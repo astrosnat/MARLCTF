@@ -40,13 +40,13 @@ contract fixtures that every user story depends on.
 
 **CRITICAL**: No user story work can begin until this phase is complete.
 
-- [ ] T009 Define shared dataclasses and enums for Match, Team, Agent, Flag, Scenario, Observation, GlobalState, PolicyConfig, RunArtifact, and MatchEvent in `src/marlctf/models.py`
-- [ ] T010 Implement config loading, defaults, and validation for smoke YAML files in `src/marlctf/config.py`
-- [ ] T011 Implement deterministic seed utilities and run id creation in `src/marlctf/seeding.py`
-- [ ] T012 Implement JSON/JSONL run artifact writer and interrupted-run handling in `src/marlctf/artifacts.py`
-- [ ] T013 [P] Create reusable scenario and action fixtures for contract tests in `tests/conftest.py`
-- [ ] T014 [P] Add config validation unit tests for all smoke config files in `tests/unit/test_config.py`
-- [ ] T015 [P] Add artifact writer unit tests for `run.json`, `metrics.jsonl`, and `events.jsonl` in `tests/unit/test_artifacts.py`
+- [X] T009 Define shared dataclasses and enums for Match, Team, Agent, Flag, Scenario, Observation, GlobalState, PolicyConfig, RunArtifact, and MatchEvent in `src/marlctf/models.py`
+- [X] T010 Implement config loading, defaults, and validation for smoke YAML files in `src/marlctf/config.py`
+- [X] T011 Implement deterministic seed utilities and run id creation in `src/marlctf/seeding.py`
+- [X] T012 Implement JSON/JSONL run artifact writer and interrupted-run handling in `src/marlctf/artifacts.py`
+- [X] T013 [P] Create reusable scenario and action fixtures for contract tests in `tests/conftest.py`
+- [X] T014 [P] Add config validation unit tests for all smoke config files in `tests/unit/test_config.py`
+- [X] T015 [P] Add artifact writer unit tests for `run.json`, `metrics.jsonl`, and `events.jsonl` in `tests/unit/test_artifacts.py`
 
 **Checkpoint**: Shared data, config, seed, and artifact infrastructure exists and
 can be tested without the environment implementation.

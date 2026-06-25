@@ -26,6 +26,13 @@ teams:
       - [7, 4]
     flag_home: [8, 3]
     policy: scripted
+policy_config:
+  red:
+    type: scripted
+    seed: 42
+  blue:
+    type: scripted
+    seed: 43
 actions:
   0: stay
   1: move_north

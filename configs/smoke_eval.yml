@@ -13,6 +13,12 @@ baseline:
   team: blue
   policy:
     type: scripted
+policy_config:
+  red:
+    type: vdn
+    checkpoint_path: artifacts/smoke-train/checkpoints/latest.pt
+  blue:
+    type: scripted
 metrics:
   acceptance:
     min_win_rate: 0.5
