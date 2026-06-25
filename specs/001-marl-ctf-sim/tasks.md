@@ -64,24 +64,24 @@ events, and final artifacts follow the documented rules.
 
 ### Tests for User Story 1 (write first)
 
-- [ ] T016 [P] [US1] Add PettingZoo Parallel API, reset, space stability, action mask, and global state contract tests in `tests/contract/test_environment_contract.py`
-- [ ] T017 [P] [US1] Add mechanics unit tests for movement bounds, blocked cells, simultaneous collisions, flag pickup, flag return, scoring, tagging, respawn, and truncation in `tests/unit/test_mechanics.py`
-- [ ] T018 [P] [US1] Add observation and global-state shape tests for hidden entities, score features, action masks, and fixed scenario shapes in `tests/unit/test_observations.py`
-- [ ] T019 [P] [US1] Add reward tests for step penalty, flag pickup, tag, score, carrier tagged, terminal win, and terminal loss in `tests/unit/test_rewards.py`
-- [ ] T020 [P] [US1] Add deterministic seeded match integration test for two identical scripted-policy runs in `tests/integration/test_seeded_match.py`
-- [ ] T021 [P] [US1] Add CLI contract tests for `marlctf match` options, exit codes, and required artifacts in `tests/contract/test_cli_contract.py`
+- [X] T016 [P] [US1] Add PettingZoo Parallel API, reset, space stability, action mask, and global state contract tests in `tests/contract/test_environment_contract.py`
+- [X] T017 [P] [US1] Add mechanics unit tests for movement bounds, blocked cells, simultaneous collisions, flag pickup, flag return, scoring, tagging, respawn, and truncation in `tests/unit/test_mechanics.py`
+- [X] T018 [P] [US1] Add observation and global-state shape tests for hidden entities, score features, action masks, and fixed scenario shapes in `tests/unit/test_observations.py`
+- [X] T019 [P] [US1] Add reward tests for step penalty, flag pickup, tag, score, carrier tagged, terminal win, and terminal loss in `tests/unit/test_rewards.py`
+- [X] T020 [P] [US1] Add deterministic seeded match integration test for two identical scripted-policy runs in `tests/integration/test_seeded_match.py`
+- [X] T021 [P] [US1] Add CLI contract tests for `marlctf match` options, exit codes, and required artifacts in `tests/contract/test_cli_contract.py`
 
 ### Implementation for User Story 1
 
-- [ ] T022 [P] [US1] Implement CTF movement, collision resolution, tag resolution, flag state transitions, scoring, truncation, and terminal rules in `src/marlctf/env/mechanics.py`
-- [ ] T023 [P] [US1] Implement fixed-shape local observations, action masks, and QMIX-compatible global state conversion in `src/marlctf/env/observations.py`
-- [ ] T024 [P] [US1] Implement configurable reward calculation for match events and terminal outcomes in `src/marlctf/env/rewards.py`
-- [ ] T025 [US1] Implement the PettingZoo Parallel environment `marlctf_3v3_v0` in `src/marlctf/env/ctf_parallel_env.py`
-- [ ] T026 [P] [US1] Implement random baseline team policy in `src/marlctf/policies/random_policy.py`
-- [ ] T027 [P] [US1] Implement scripted baseline team policy for deterministic smoke matches in `src/marlctf/policies/scripted_policy.py`
-- [ ] T028 [US1] Implement match runner that connects environment, policies, seeds, and artifact output in `src/marlctf/runner.py`
-- [ ] T029 [US1] Implement `marlctf match` CLI command in `src/marlctf/cli.py`
-- [ ] T030 [US1] Wire package console entry point for `marlctf` in `pyproject.toml`
+- [X] T022 [P] [US1] Implement CTF movement, collision resolution, tag resolution, flag state transitions, scoring, truncation, and terminal rules in `src/marlctf/env/mechanics.py`
+- [X] T023 [P] [US1] Implement fixed-shape local observations, action masks, and QMIX-compatible global state conversion in `src/marlctf/env/observations.py`
+- [X] T024 [P] [US1] Implement configurable reward calculation for match events and terminal outcomes in `src/marlctf/env/rewards.py`
+- [X] T025 [US1] Implement the PettingZoo Parallel environment `marlctf_3v3_v0` in `src/marlctf/env/ctf_parallel_env.py`
+- [X] T026 [P] [US1] Implement random baseline team policy in `src/marlctf/policies/random_policy.py`
+- [X] T027 [P] [US1] Implement scripted baseline team policy for deterministic smoke matches in `src/marlctf/policies/scripted_policy.py`
+- [X] T028 [US1] Implement match runner that connects environment, policies, seeds, and artifact output in `src/marlctf/runner.py`
+- [X] T029 [US1] Implement `marlctf match` CLI command in `src/marlctf/cli.py`
+- [X] T030 [US1] Wire package console entry point for `marlctf` in `pyproject.toml`
 
 **Checkpoint**: `marlctf match --config configs/smoke_match.yml --seed 42
 --artifact-dir artifacts/smoke-match` completes and writes valid artifacts.

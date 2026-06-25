@@ -191,3 +191,7 @@ Thumbs.db
 # Agents and Speckit Specify
 .agents/
 .specify/
+
+# MARLCTF runtime artifacts
+artifacts/*
+!artifacts/.gitkeep
