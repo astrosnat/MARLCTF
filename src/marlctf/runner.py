@@ -11,6 +11,7 @@ from marlctf.env.ctf_parallel_env import CTFParallelEnv
 from marlctf.models import MatchStatus
 from marlctf.policies.random_policy import RandomPolicy
 from marlctf.policies.scripted_policy import ScriptedPolicy
+from marlctf.policies.vdn_policy import VDNPolicy
 from marlctf.seeding import make_run_id
 
 
@@ -106,6 +107,11 @@ def _build_policies(config: dict[str, Any]) -> dict[str, object]:
             policies[team_id] = RandomPolicy(seed=policy.get("seed"))
         elif policy_type == "scripted":
             policies[team_id] = ScriptedPolicy()
+        elif policy_type == "vdn":
+            policies[team_id] = VDNPolicy(
+                checkpoint_path=policy.get("checkpoint_path"),
+                seed=policy.get("seed"),
+            )
         else:
             raise ValueError(f"policy type is not available for match runs yet: {policy_type}")
     return policies

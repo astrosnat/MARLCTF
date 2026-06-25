@@ -99,19 +99,19 @@ checkpoint metadata.
 
 ### Tests for User Story 2 (write first)
 
-- [ ] T031 [P] [US2] Add replay buffer unit tests for transition shape, episode boundary handling, sampling, and seed determinism in `tests/unit/test_replay_buffer.py`
-- [ ] T032 [P] [US2] Add VDN model unit tests for per-agent Q output shapes, team value sum, masked action selection, and checkpoint metadata in `tests/unit/test_vdn.py`
-- [ ] T033 [P] [US2] Add training runner integration smoke test for metrics, runtime budget, and artifact output in `tests/integration/test_training_smoke.py`
-- [ ] T034 [P] [US2] Add CLI contract tests for `marlctf train` options, exit codes, and required training artifacts in `tests/contract/test_cli_train.py`
+- [X] T031 [P] [US2] Add replay buffer unit tests for transition shape, episode boundary handling, sampling, and seed determinism in `tests/unit/test_replay_buffer.py`
+- [X] T032 [P] [US2] Add VDN model unit tests for per-agent Q output shapes, team value sum, masked action selection, and checkpoint metadata in `tests/unit/test_vdn.py`
+- [X] T033 [P] [US2] Add training runner integration smoke test for metrics, runtime budget, and artifact output in `tests/integration/test_training_smoke.py`
+- [X] T034 [P] [US2] Add CLI contract tests for `marlctf train` options, exit codes, and required training artifacts in `tests/contract/test_cli_train.py`
 
 ### Implementation for User Story 2
 
-- [ ] T035 [P] [US2] Implement episode replay buffer and transition schema in `src/marlctf/training/replay_buffer.py`
-- [ ] T036 [P] [US2] Implement compact PyTorch VDN agent network, team-value summation, masked action selection, and checkpoint save/load in `src/marlctf/training/vdn.py`
-- [ ] T037 [US2] Implement bounded training loop with exploration schedule, target updates, metric logging, and interrupted-run handling in `src/marlctf/training/runner.py`
-- [ ] T038 [US2] Add VDN policy loading and inference adapter for matches in `src/marlctf/policies/vdn_policy.py`
-- [ ] T039 [US2] Implement `marlctf train` CLI command and config validation in `src/marlctf/cli.py`
-- [ ] T040 [US2] Ensure training run metadata records algorithm, seed, scenario, reward config, smoke limits, runtime, metrics path, and checkpoint paths in `src/marlctf/artifacts.py`
+- [X] T035 [P] [US2] Implement episode replay buffer and transition schema in `src/marlctf/training/replay_buffer.py`
+- [X] T036 [P] [US2] Implement compact PyTorch VDN agent network, team-value summation, masked action selection, and checkpoint save/load in `src/marlctf/training/vdn.py`
+- [X] T037 [US2] Implement bounded training loop with exploration schedule, target updates, metric logging, and interrupted-run handling in `src/marlctf/training/runner.py`
+- [X] T038 [US2] Add VDN policy loading and inference adapter for matches in `src/marlctf/policies/vdn_policy.py`
+- [X] T039 [US2] Implement `marlctf train` CLI command and config validation in `src/marlctf/cli.py`
+- [X] T040 [US2] Ensure training run metadata records algorithm, seed, scenario, reward config, smoke limits, runtime, metrics path, and checkpoint paths in `src/marlctf/artifacts.py`
 
 **Checkpoint**: `marlctf train --config configs/smoke_train.yml --seed 7
 --artifact-dir artifacts/smoke-train` completes within the smoke budget and

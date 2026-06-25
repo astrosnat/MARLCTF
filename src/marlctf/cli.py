@@ -8,6 +8,7 @@ from pathlib import Path
 
 from marlctf.config import ConfigError
 from marlctf.runner import run_match
+from marlctf.training.runner import run_training
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -21,6 +22,12 @@ def build_parser() -> argparse.ArgumentParser:
     match.add_argument("--policy-blue")
     match.add_argument("--artifact-dir")
     match.add_argument("--render", choices=["none", "ansi", "human"], default="none")
+    train = subparsers.add_parser("train", help="Run a bounded local VDN training smoke run")
+    train.add_argument("--config", required=True)
+    train.add_argument("--seed", type=int)
+    train.add_argument("--artifact-dir")
+    train.add_argument("--checkpoint-every", type=int)
+    train.add_argument("--episodes", type=int)
     return parser
 
 
@@ -36,6 +43,21 @@ def main(argv: list[str] | None = None) -> int:
                 policy_red=args.policy_red,
                 policy_blue=args.policy_blue,
                 render=args.render,
+            )
+            return 0
+        except ConfigError as exc:
+            print(f"config error: {exc}", file=sys.stderr)
+            return 1
+        except Exception as exc:
+            print(f"runtime error: {exc}", file=sys.stderr)
+            return 2
+    if args.command == "train":
+        try:
+            run_training(
+                Path(args.config),
+                seed=args.seed,
+                artifact_dir=args.artifact_dir,
+                episodes=args.episodes,
             )
             return 0
         except ConfigError as exc:

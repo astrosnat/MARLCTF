@@ -40,6 +40,10 @@ class RunArtifactWriter:
     def append_event(self, event: dict[str, Any]) -> None:
         self._append_jsonl(self.events_path, event)
 
+    def set_checkpoint_paths(self, checkpoint_paths: list[str | Path]) -> None:
+        self.metadata["checkpoint_paths"] = [Path(path).as_posix() for path in checkpoint_paths]
+        self._write_run()
+
     def complete(self, summary: dict[str, Any]) -> dict[str, Any]:
         if not summary:
             raise ArtifactError("completed runs require summary metrics")

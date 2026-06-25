@@ -5,6 +5,37 @@ artifact_dir: artifacts/smoke-train
 algorithm: vdn
 max_steps: 200
 capture_target: 1
+map:
+  width: 9
+  height: 7
+  walls:
+    - [4, 1]
+    - [4, 5]
+teams:
+  red:
+    spawn_zone:
+      - [1, 2]
+      - [1, 3]
+      - [1, 4]
+    flag_home: [0, 3]
+    policy: vdn
+  blue:
+    spawn_zone:
+      - [7, 2]
+      - [7, 3]
+      - [7, 4]
+    flag_home: [8, 3]
+    policy: scripted
+actions:
+  0: stay
+  1: move_north
+  2: move_south
+  3: move_west
+  4: move_east
+  5: tag
+invalid_action:
+  mode: stay
+  penalty: -0.05
 training:
   episodes: 20
   batch_size: 8
