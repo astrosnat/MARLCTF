@@ -22,14 +22,14 @@ and tested independently after the shared foundation is complete.
 **Purpose**: Create the Python package skeleton, dependency metadata, smoke
 configuration files, and test directories used by all stories.
 
-- [ ] T001 Create package, test, config, and artifact directories in `src/marlctf/`, `tests/`, `configs/`, and `artifacts/`
-- [ ] T002 Create Python project metadata with runtime and dev dependencies in `pyproject.toml`
-- [ ] T003 [P] Create package exports and version metadata in `src/marlctf/__init__.py`
-- [ ] T004 [P] Create empty module initializers in `src/marlctf/env/__init__.py`, `src/marlctf/policies/__init__.py`, `src/marlctf/training/__init__.py`, and `src/marlctf/evaluation/__init__.py`
-- [ ] T005 [P] Add artifact directory placeholder in `artifacts/.gitkeep`
-- [ ] T006 [P] Create default smoke match configuration in `configs/smoke_match.yml`
-- [ ] T007 [P] Create default smoke training configuration in `configs/smoke_train.yml`
-- [ ] T008 [P] Create default smoke evaluation configuration in `configs/smoke_eval.yml`
+- [X] T001 Create package, test, config, and artifact directories in `src/marlctf/`, `tests/`, `configs/`, and `artifacts/`
+- [X] T002 Create Python project metadata with runtime and dev dependencies in `pyproject.toml`
+- [X] T003 [P] Create package exports and version metadata in `src/marlctf/__init__.py`
+- [X] T004 [P] Create empty module initializers in `src/marlctf/env/__init__.py`, `src/marlctf/policies/__init__.py`, `src/marlctf/training/__init__.py`, and `src/marlctf/evaluation/__init__.py`
+- [X] T005 [P] Add artifact directory placeholder in `artifacts/.gitkeep`
+- [X] T006 [P] Create default smoke match configuration in `configs/smoke_match.yml`
+- [X] T007 [P] Create default smoke training configuration in `configs/smoke_train.yml`
+- [X] T008 [P] Create default smoke evaluation configuration in `configs/smoke_eval.yml`
 
 ---
 

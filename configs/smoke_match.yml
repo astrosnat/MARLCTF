@@ -1,0 +1,50 @@
+run_type: match
+scenario_id: tiny-3v3-ctf
+seed: 42
+max_steps: 200
+capture_target: 1
+artifact_dir: artifacts/smoke-match
+render: none
+map:
+  width: 9
+  height: 7
+  walls:
+    - [4, 1]
+    - [4, 5]
+teams:
+  red:
+    spawn_zone:
+      - [1, 2]
+      - [1, 3]
+      - [1, 4]
+    flag_home: [0, 3]
+    policy: scripted
+  blue:
+    spawn_zone:
+      - [7, 2]
+      - [7, 3]
+      - [7, 4]
+    flag_home: [8, 3]
+    policy: scripted
+actions:
+  0: stay
+  1: move_north
+  2: move_south
+  3: move_west
+  4: move_east
+  5: tag
+observation:
+  view_radius: 3
+  include_action_mask: true
+  include_global_state: true
+reward_config:
+  step: -0.01
+  flag_pickup: 1.0
+  tag: 0.25
+  tagged_while_carrying: -0.5
+  score: 5.0
+  terminal_win: 10.0
+  terminal_loss: -10.0
+invalid_action:
+  mode: stay
+  penalty: -0.05

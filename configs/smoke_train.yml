@@ -1,0 +1,36 @@
+run_type: train
+scenario_id: tiny-3v3-ctf
+seed: 7
+artifact_dir: artifacts/smoke-train
+algorithm: vdn
+max_steps: 200
+capture_target: 1
+training:
+  episodes: 20
+  batch_size: 8
+  replay_capacity: 1000
+  learning_rate: 0.001
+  gamma: 0.99
+  epsilon_start: 1.0
+  epsilon_end: 0.1
+  target_update_interval: 10
+  checkpoint_every: 20
+  max_runtime_minutes: 30
+policy_config:
+  red:
+    type: vdn
+    checkpoint_path: null
+  blue:
+    type: scripted
+reward_config:
+  step: -0.01
+  flag_pickup: 1.0
+  tag: 0.25
+  tagged_while_carrying: -0.5
+  score: 5.0
+  terminal_win: 10.0
+  terminal_loss: -10.0
+observation:
+  view_radius: 3
+  include_action_mask: true
+  include_global_state: true

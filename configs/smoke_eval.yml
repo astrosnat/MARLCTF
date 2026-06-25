@@ -1,0 +1,31 @@
+run_type: evaluate
+scenario_id: tiny-3v3-ctf
+seeds: [101, 102, 103, 104, 105, 106, 107, 108, 109, 110]
+artifact_dir: artifacts/smoke-eval
+max_steps: 200
+capture_target: 1
+candidate:
+  team: red
+  policy:
+    type: vdn
+    checkpoint_path: artifacts/smoke-train/checkpoints/latest.pt
+baseline:
+  team: blue
+  policy:
+    type: scripted
+metrics:
+  acceptance:
+    min_win_rate: 0.5
+    max_rule_validity_failures: 0
+reward_config:
+  step: -0.01
+  flag_pickup: 1.0
+  tag: 0.25
+  tagged_while_carrying: -0.5
+  score: 5.0
+  terminal_win: 10.0
+  terminal_loss: -10.0
+observation:
+  view_radius: 3
+  include_action_mask: true
+  include_global_state: true
