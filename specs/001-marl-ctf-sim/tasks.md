@@ -1,4 +1,4 @@
-# Tasks: Toy MARL CTF Simulation
+﻿# Tasks: Toy MARL CTF Simulation
 
 **Input**: Design documents from `/specs/001-marl-ctf-sim/`
 **Prerequisites**: plan.md, spec.md, research.md, data-model.md, contracts/, quickstart.md
@@ -131,16 +131,16 @@ failures, and pass/fail threshold output.
 
 ### Tests for User Story 3 (write first)
 
-- [ ] T041 [P] [US3] Add evaluation metrics unit tests for win rate, capture count, average return, episode length, rule-validity failures, and threshold pass/fail in `tests/unit/test_evaluation_metrics.py`
-- [ ] T042 [P] [US3] Add evaluation runner integration smoke test for fixed seed sets and `comparison.json` output in `tests/integration/test_evaluation_smoke.py`
-- [ ] T043 [P] [US3] Add CLI contract tests for `marlctf evaluate` options, exit codes, and required evaluation artifacts in `tests/contract/test_cli_evaluate.py`
+- [X] T041 [P] [US3] Add evaluation metrics unit tests for win rate, capture count, average return, episode length, rule-validity failures, and threshold pass/fail in `tests/unit/test_evaluation_metrics.py`
+- [X] T042 [P] [US3] Add evaluation runner integration smoke test for fixed seed sets and `comparison.json` output in `tests/integration/test_evaluation_smoke.py`
+- [X] T043 [P] [US3] Add CLI contract tests for `marlctf evaluate` options, exit codes, and required evaluation artifacts in `tests/contract/test_cli_evaluate.py`
 
 ### Implementation for User Story 3
 
-- [ ] T044 [P] [US3] Implement aggregate evaluation metric calculations in `src/marlctf/evaluation/metrics.py`
-- [ ] T045 [US3] Implement evaluation runner for baseline-versus-candidate policy batches over fixed seeds in `src/marlctf/evaluation/evaluator.py`
-- [ ] T046 [US3] Implement `marlctf evaluate` CLI command and comparison artifact writing in `src/marlctf/cli.py`
-- [ ] T047 [US3] Ensure evaluation artifacts include per-seed metrics, aggregate summary, `comparison.json`, and acceptance threshold result in `src/marlctf/artifacts.py`
+- [X] T044 [P] [US3] Implement aggregate evaluation metric calculations in `src/marlctf/evaluation/metrics.py`
+- [X] T045 [US3] Implement evaluation runner for baseline-versus-candidate policy batches over fixed seeds in `src/marlctf/evaluation/evaluator.py`
+- [X] T046 [US3] Implement `marlctf evaluate` CLI command and comparison artifact writing in `src/marlctf/cli.py`
+- [X] T047 [US3] Ensure evaluation artifacts include per-seed metrics, aggregate summary, `comparison.json`, and acceptance threshold result in `src/marlctf/artifacts.py`
 
 **Checkpoint**: `marlctf evaluate --config configs/smoke_eval.yml
 --artifact-dir artifacts/smoke-eval` writes `comparison.json` and aggregate
@@ -251,3 +251,4 @@ Task: "T043 [P] [US3] Add CLI contract tests for marlctf evaluate options, exit 
 - All user-story phase tasks include `[US1]`, `[US2]`, or `[US3]`.
 - Setup, foundational, and polish tasks omit user-story labels.
 - Each task names at least one concrete file path.
+

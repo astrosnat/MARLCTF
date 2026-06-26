@@ -1,4 +1,4 @@
-"""Command line interface for MARLCTF."""
+﻿"""Command line interface for MARLCTF."""
 
 from __future__ import annotations
 
@@ -7,6 +7,7 @@ import sys
 from pathlib import Path
 
 from marlctf.config import ConfigError
+from marlctf.evaluation.evaluator import run_evaluation
 from marlctf.runner import run_match
 from marlctf.training.runner import run_training
 
@@ -28,6 +29,11 @@ def build_parser() -> argparse.ArgumentParser:
     train.add_argument("--artifact-dir")
     train.add_argument("--checkpoint-every", type=int)
     train.add_argument("--episodes", type=int)
+    evaluate = subparsers.add_parser("evaluate", help="Compare policies over fixed seeds")
+    evaluate.add_argument("--config", required=True)
+    evaluate.add_argument("--artifact-dir")
+    evaluate.add_argument("--candidate")
+    evaluate.add_argument("--baseline")
     return parser
 
 
@@ -58,6 +64,21 @@ def main(argv: list[str] | None = None) -> int:
                 seed=args.seed,
                 artifact_dir=args.artifact_dir,
                 episodes=args.episodes,
+            )
+            return 0
+        except ConfigError as exc:
+            print(f"config error: {exc}", file=sys.stderr)
+            return 1
+        except Exception as exc:
+            print(f"runtime error: {exc}", file=sys.stderr)
+            return 2
+    if args.command == "evaluate":
+        try:
+            run_evaluation(
+                Path(args.config),
+                artifact_dir=args.artifact_dir,
+                candidate=args.candidate,
+                baseline=args.baseline,
             )
             return 0
         except ConfigError as exc:

@@ -1,4 +1,4 @@
-"""Local JSON/JSONL artifact writing."""
+﻿"""Local JSON/JSONL artifact writing."""
 
 from __future__ import annotations
 
@@ -43,6 +43,16 @@ class RunArtifactWriter:
     def set_checkpoint_paths(self, checkpoint_paths: list[str | Path]) -> None:
         self.metadata["checkpoint_paths"] = [Path(path).as_posix() for path in checkpoint_paths]
         self._write_run()
+
+    def write_json_artifact(self, filename: str, payload: dict[str, Any]) -> Path:
+        path = self.artifact_dir / filename
+        path.write_text(
+            json.dumps(_jsonable(payload), indent=2, sort_keys=True) + "\n",
+            encoding="utf-8",
+        )
+        self.metadata[f"{path.stem}_path"] = path.as_posix()
+        self._write_run()
+        return path
 
     def complete(self, summary: dict[str, Any]) -> dict[str, Any]:
         if not summary:
