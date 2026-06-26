@@ -24,11 +24,11 @@ complete.
 **Purpose**: Create directories and package/static-asset scaffolding for replay
 artifacts and the local viewer.
 
-- [ ] T001 Create replay/viewer package directories in `src/marlctf/viewer/`, `src/marlctf/viewer/static/`, and `tests/viewer/`
-- [ ] T002 [P] Create viewer package initializer in `src/marlctf/viewer/__init__.py`
-- [ ] T003 [P] Create placeholder static viewer files in `src/marlctf/viewer/static/index.html`, `src/marlctf/viewer/static/app.js`, and `src/marlctf/viewer/static/styles.css`
-- [ ] T004 [P] Ensure viewer static assets are packaged in `pyproject.toml`
-- [ ] T005 [P] Create sample viewer manifest placeholder in `src/marlctf/viewer/static/sample-manifest.json`
+- [X] T001 Create replay/viewer package directories in `src/marlctf/viewer/`, `src/marlctf/viewer/static/`, and `tests/viewer/`
+- [X] T002 [P] Create viewer package initializer in `src/marlctf/viewer/__init__.py`
+- [X] T003 [P] Create placeholder static viewer files in `src/marlctf/viewer/static/index.html`, `src/marlctf/viewer/static/app.js`, and `src/marlctf/viewer/static/styles.css`
+- [X] T004 [P] Ensure viewer static assets are packaged in `pyproject.toml`
+- [X] T005 [P] Create sample viewer manifest placeholder in `src/marlctf/viewer/static/sample-manifest.json`
 
 ---
 
@@ -290,3 +290,4 @@ With multiple contributors:
 - Each story has an independent test path and a checkpoint command or artifact.
 - Tests should fail against the current code before implementation begins.
 - Avoid recording every training episode replay by default; sampled training replays must remain bounded.
+
