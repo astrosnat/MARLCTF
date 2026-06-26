@@ -1,4 +1,4 @@
-# Byte-compiled / optimized / DLL files
+﻿# Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
@@ -195,3 +195,6 @@ Thumbs.db
 # MARLCTF runtime artifacts
 artifacts/*
 !artifacts/.gitkeep
+!artifacts/validation/
+!artifacts/validation/*.json
+

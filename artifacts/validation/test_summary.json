@@ -1,0 +1,17 @@
+{
+  "command": [
+    "python",
+    "C:/tmp/marlctf_pytest_force_exit.py",
+    "-q",
+    "--basetemp=C:/tmp/marlctf-full-pytest",
+    "-o",
+    "cache_dir=C:/tmp/marlctf-full-pytest-cache"
+  ],
+  "created_at": "2026-06-26T03:28:29.710621+00:00",
+  "error": null,
+  "exit_code": 0,
+  "runtime_seconds": 22.7018,
+  "status": "passed",
+  "stderr_tail": "",
+  "stdout_tail": "............................................                             [100%]\n44 passed in 12.41s\n"
+}

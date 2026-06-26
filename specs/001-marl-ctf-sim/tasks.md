@@ -153,12 +153,12 @@ metrics for at least 10 seeds.
 **Purpose**: Validate the complete quickstart, harden documentation, and run the
 full reproducibility evidence required by the constitution.
 
-- [ ] T048 [P] Update README with install, match, train, evaluate, and artifact inspection commands in `README.md`
-- [ ] T049 [P] Document default scenario rules, action ids, rewards, observation features, and state features in `docs/scenario.md`
-- [ ] T050 [P] Add generated artifact examples or schemas for `run.json`, `metrics.jsonl`, `events.jsonl`, and `comparison.json` in `docs/artifacts.md`
-- [ ] T051 Run 100 seeded rule-validity smoke matches and record the result in `artifacts/validation/rule_validity_summary.json`
-- [ ] T052 Run quickstart commands end-to-end and record the outcome in `artifacts/validation/quickstart_summary.json`
-- [ ] T053 Run the full pytest suite and record the final test result in `artifacts/validation/test_summary.json`
+- [X] T048 [P] Update README with install, match, train, evaluate, and artifact inspection commands in `README.md`
+- [X] T049 [P] Document default scenario rules, action ids, rewards, observation features, and state features in `docs/scenario.md`
+- [X] T050 [P] Add generated artifact examples or schemas for `run.json`, `metrics.jsonl`, `events.jsonl`, and `comparison.json` in `docs/artifacts.md`
+- [X] T051 Run 100 seeded rule-validity smoke matches and record the result in `artifacts/validation/rule_validity_summary.json`
+- [X] T052 Run quickstart commands end-to-end and record the outcome in `artifacts/validation/quickstart_summary.json`
+- [X] T053 Run the full pytest suite and record the final test result in `artifacts/validation/test_summary.json`
 
 ---
 
@@ -251,4 +251,5 @@ Task: "T043 [P] [US3] Add CLI contract tests for marlctf evaluate options, exit 
 - All user-story phase tasks include `[US1]`, `[US2]`, or `[US3]`.
 - Setup, foundational, and polish tasks omit user-story labels.
 - Each task names at least one concrete file path.
+
 
