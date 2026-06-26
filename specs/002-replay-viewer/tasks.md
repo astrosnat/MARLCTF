@@ -1,4 +1,4 @@
-﻿# Tasks: Replay Viewer
+# Tasks: Replay Viewer
 
 **Input**: Design documents from `/specs/002-replay-viewer/`
 **Prerequisites**: plan.md, spec.md, research.md, data-model.md, contracts/, quickstart.md
@@ -41,17 +41,17 @@ primitives that every story depends on.
 
 ### Foundational Tests
 
-- [ ] T006 [P] Add replay snapshot unit tests for schema fields, agent/flag coordinates, terminal fields, and ordered steps in `tests/unit/test_replay_snapshots.py`
-- [ ] T007 [P] Add replay JSONL artifact unit tests for append/read behavior and metadata path handling in `tests/unit/test_replay_artifacts.py`
-- [ ] T008 [P] Add viewer data parsing unit tests for run directories, replay files, metrics files, comparison files, and missing optional artifacts in `tests/unit/test_viewer_data_parsing.py`
+- [X] T006 [P] Add replay snapshot unit tests for schema fields, agent/flag coordinates, terminal fields, and ordered steps in `tests/unit/test_replay_snapshots.py`
+- [X] T007 [P] Add replay JSONL artifact unit tests for append/read behavior and metadata path handling in `tests/unit/test_replay_artifacts.py`
+- [X] T008 [P] Add viewer data parsing unit tests for run directories, replay files, metrics files, comparison files, and missing optional artifacts in `tests/unit/test_viewer_data_parsing.py`
 
 ### Foundational Implementation
 
-- [ ] T009 Implement replay snapshot builders and validators in `src/marlctf/replay.py`
-- [ ] T010 Extend artifact writer with replay JSONL and generic viewer artifact helpers in `src/marlctf/artifacts.py`
-- [ ] T011 Implement viewer artifact discovery and JSON/JSONL parsing helpers in `src/marlctf/viewer/data.py`
-- [ ] T012 Implement shared viewer error types and validation result objects in `src/marlctf/viewer/data.py`
-- [ ] T013 Update artifact documentation with replay artifact schema references in `docs/artifacts.md`
+- [X] T009 Implement replay snapshot builders and validators in `src/marlctf/replay.py`
+- [X] T010 Extend artifact writer with replay JSONL and generic viewer artifact helpers in `src/marlctf/artifacts.py`
+- [X] T011 Implement viewer artifact discovery and JSON/JSONL parsing helpers in `src/marlctf/viewer/data.py`
+- [X] T012 Implement shared viewer error types and validation result objects in `src/marlctf/viewer/data.py`
+- [X] T013 Update artifact documentation with replay artifact schema references in `docs/artifacts.md`
 
 **Checkpoint**: Replay snapshots can be built, validated, written, and discovered without the UI or run-loop integration.
 
