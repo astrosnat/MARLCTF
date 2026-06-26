@@ -65,21 +65,21 @@ primitives that every story depends on.
 
 ### Tests for User Story 1
 
-- [ ] T014 [P] [US1] Add replay artifact contract tests for required snapshot fields and final snapshot consistency in `tests/contract/test_replay_artifact_contract.py`
-- [ ] T015 [P] [US1] Add CLI contract tests for `marlctf match` replay metadata and `marlctf viewer --artifact` behavior in `tests/contract/test_cli_viewer.py`
-- [ ] T016 [P] [US1] Add match replay integration smoke test for initial snapshot, per-step snapshots, terminal snapshot, and artifact size in `tests/integration/test_match_replay_smoke.py`
-- [ ] T017 [P] [US1] Add viewer replay parser/renderer contract tests for controls, grid labels, agents, flags, score, step text, and events in `tests/contract/test_viewer_contract.py`
+- [X] T014 [P] [US1] Add replay artifact contract tests for required snapshot fields and final snapshot consistency in `tests/contract/test_replay_artifact_contract.py`
+- [X] T015 [P] [US1] Add CLI contract tests for `marlctf match` replay metadata and `marlctf viewer --artifact` behavior in `tests/contract/test_cli_viewer.py`
+- [X] T016 [P] [US1] Add match replay integration smoke test for initial snapshot, per-step snapshots, terminal snapshot, and artifact size in `tests/integration/test_match_replay_smoke.py`
+- [X] T017 [P] [US1] Add viewer replay parser/renderer contract tests for controls, grid labels, agents, flags, score, step text, and events in `tests/contract/test_viewer_contract.py`
 
 ### Implementation for User Story 1
 
-- [ ] T018 [US1] Write initial and post-step match replay snapshots from the match runner in `src/marlctf/runner.py`
-- [ ] T019 [US1] Persist match replay metadata fields `replay_available` and `replay_paths` in `src/marlctf/artifacts.py`
-- [ ] T020 [US1] Implement viewer CLI command options `--artifact`, `--host`, `--port`, and `--no-open` in `src/marlctf/cli.py`
-- [ ] T021 [P] [US1] Implement replay board drawing and state rendering in `src/marlctf/viewer/static/app.js`
-- [ ] T022 [P] [US1] Implement viewer replay controls, speed selection, step scrubber, and event list updates in `src/marlctf/viewer/static/app.js`
-- [ ] T023 [P] [US1] Implement accessible replay layout and visual styling in `src/marlctf/viewer/static/index.html` and `src/marlctf/viewer/static/styles.css`
-- [ ] T024 [US1] Add viewer smoke harness or static rendering validation in `tests/integration/test_viewer_smoke.py`
-- [ ] T025 [US1] Document match replay usage and viewer launch commands in `docs/viewer.md`
+- [X] T018 [US1] Write initial and post-step match replay snapshots from the match runner in `src/marlctf/runner.py`
+- [X] T019 [US1] Persist match replay metadata fields `replay_available` and `replay_paths` in `src/marlctf/artifacts.py`
+- [X] T020 [US1] Implement viewer CLI command options `--artifact`, `--host`, `--port`, and `--no-open` in `src/marlctf/cli.py`
+- [X] T021 [P] [US1] Implement replay board drawing and state rendering in `src/marlctf/viewer/static/app.js`
+- [X] T022 [P] [US1] Implement viewer replay controls, speed selection, step scrubber, and event list updates in `src/marlctf/viewer/static/app.js`
+- [X] T023 [P] [US1] Implement accessible replay layout and visual styling in `src/marlctf/viewer/static/index.html` and `src/marlctf/viewer/static/styles.css`
+- [X] T024 [US1] Add viewer smoke harness or static rendering validation in `tests/integration/test_viewer_smoke.py`
+- [X] T025 [US1] Document match replay usage and viewer launch commands in `docs/viewer.md`
 
 **Checkpoint**: `marlctf match --config configs/smoke_match.yml --seed 42 --artifact-dir artifacts/viewer-match` writes `replay.jsonl`, and `marlctf viewer --artifact artifacts/viewer-match` can inspect it.
 
