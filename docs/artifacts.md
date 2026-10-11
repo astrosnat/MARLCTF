@@ -1,4 +1,4 @@
-﻿# Artifacts
+# Artifacts
 
 MARLCTF writes local JSON and JSONL artifacts for reproducibility. Runtime artifacts are ignored by Git except `artifacts/.gitkeep`.
 
@@ -18,6 +18,8 @@ All commands write `run.json`.
   "policy_ids": ["red:scripted", "blue:scripted"],
   "metrics_path": "artifacts/smoke-match/metrics.jsonl",
   "events_path": "artifacts/smoke-match/events.jsonl",
+  "replay_available": true,
+  "replay_paths": ["artifacts/smoke-match/replay.jsonl"],
   "summary": {}
 }
 ```
@@ -36,6 +38,8 @@ Required fields:
 | `policy_ids` | Team policy labels |
 | `metrics_path` | JSONL metrics path |
 | `events_path` | JSONL events path |
+| `replay_available` | Match runs: whether at least one replay was recorded |
+| `replay_paths` | Match runs: replay JSONL paths discoverable by the viewer |
 | `summary` | Command-specific aggregate summary for completed runs |
 
 Training runs also include `algorithm`, `reward_config`, `smoke_limits`, and `checkpoint_paths`. Evaluation runs also include `candidate`, `baseline`, `reward_config`, `smoke_limits`, and `comparison_path`.
@@ -88,6 +92,65 @@ Training checkpoints are written under `checkpoints/`, with `checkpoints/latest.
 ```
 
 Known event types include `move`, `invalid_action`, `tag`, `flag_pickup`, `flag_return`, `score`, and `terminal`.
+
+## Replay Artifacts
+
+Runs that write visual replay snapshots include replay discoverability fields in
+`run.json`.
+
+```json
+{
+  "replay_available": true,
+  "replay_paths": ["artifacts/smoke-match/replay.jsonl"]
+}
+```
+
+`replay.jsonl` stores one schema-versioned snapshot per line. Each snapshot is
+designed for the local HTML/Canvas viewer.
+
+```json
+{
+  "schema_version": "1.0",
+  "run_id": "match-tiny-3v3-ctf-...",
+  "run_type": "match",
+  "scenario_id": "tiny-3v3-ctf",
+  "seed": 42,
+  "episode": null,
+  "step": 0,
+  "map": {
+    "width": 9,
+    "height": 7,
+    "walls": [[4, 1], [4, 5]]
+  },
+  "agents": {
+    "red_0": {"team": "red", "x": 1, "y": 2, "alive": true, "has_flag": false},
+    "blue_0": {"team": "blue", "x": 7, "y": 2, "alive": true, "has_flag": false}
+  },
+  "flags": {
+    "red": {"status": "home", "x": 0, "y": 3, "carrier": null},
+    "blue": {"status": "home", "x": 8, "y": 3, "carrier": null}
+  },
+  "score": {"red": 0, "blue": 0},
+  "terminal": {"status": "running", "winner": null, "reason": null},
+  "events": []
+}
+```
+
+Required snapshot fields are `schema_version`, `run_id`, `run_type`,
+`scenario_id`, `seed`, `step`, `map`, `agents`, `flags`, `score`, `terminal`,
+and `events`. Default 3v3 replay rows must contain `red_0`, `red_1`, `red_2`,
+`blue_0`, `blue_1`, and `blue_2`. Agent and visible flag coordinates must be
+inside map bounds. Carried flags use `x: null`, `y: null`, and a valid
+`carrier`.
+
+Open a replay-bearing run with:
+
+```powershell
+marlctf viewer --artifact artifacts/smoke-match
+```
+
+The controls, accepted inputs, and troubleshooting guidance are documented in
+the [replay visualisation guide](viewer.md).
 
 ## Evaluation Metrics
 

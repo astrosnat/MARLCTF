@@ -1,0 +1,6 @@
+﻿{
+  "schema_version": "1.0",
+  "viewer": "marlctf",
+  "description": "Placeholder manifest for local replay, training, and evaluation artifacts.",
+  "artifacts": []
+}

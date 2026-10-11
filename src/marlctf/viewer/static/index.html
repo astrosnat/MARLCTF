@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MARLCTF Viewer</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <main class="viewer-shell">
+      <header class="viewer-header">
+        <div>
+          <h1>MARLCTF Viewer</h1>
+          <p id="artifact-label">No artifact loaded</p>
+        </div>
+        <label class="file-picker">
+          <span>Replay JSONL</span>
+          <input id="replay-file" type="file" accept=".jsonl,application/jsonl,text/plain">
+        </label>
+      </header>
+
+      <section class="replay-layout" aria-label="Replay viewer">
+        <div class="board-region">
+          <canvas id="replay-canvas" width="720" height="560" aria-label="Capture the flag replay board"></canvas>
+        </div>
+
+        <aside class="details-region" aria-label="Replay state">
+          <div class="status-stack">
+            <p id="viewer-status" role="status">Loading</p>
+            <p id="step-text">Step 0 / 0</p>
+            <p id="score-text">Red 0 - Blue 0</p>
+            <p id="terminal-text">Status unknown</p>
+          </div>
+
+          <div class="controls" aria-label="Replay controls">
+            <button id="restart-button" type="button" title="Restart">Restart</button>
+            <button id="step-back-button" type="button" title="Step back">Back</button>
+            <button id="play-button" type="button" title="Play">Play</button>
+            <button id="pause-button" type="button" title="Pause">Pause</button>
+            <button id="step-forward-button" type="button" title="Step forward">Next</button>
+            <label class="speed-control" for="speed-select">Speed
+              <select id="speed-select">
+                <option value="0.5">0.5x</option>
+                <option value="1" selected>1x</option>
+                <option value="2">2x</option>
+                <option value="4">4x</option>
+              </select>
+            </label>
+          </div>
+
+          <label class="scrubber-label" for="step-scrubber">Step</label>
+          <input id="step-scrubber" type="range" min="0" max="0" value="0">
+
+          <section class="events-region" aria-label="Step events">
+            <h2>Events</h2>
+            <ol id="event-list"></ol>
+          </section>
+        </aside>
+      </section>
+    </main>
+    <script src="./app.js"></script>
+  </body>
+</html>

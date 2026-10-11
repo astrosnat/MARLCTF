@@ -12,6 +12,7 @@ from marlctf.models import MatchStatus
 from marlctf.policies.random_policy import RandomPolicy
 from marlctf.policies.scripted_policy import ScriptedPolicy
 from marlctf.policies.vdn_policy import VDNPolicy
+from marlctf.replay import build_replay_snapshot
 from marlctf.seeding import make_run_id
 
 
@@ -54,6 +55,9 @@ def run_match(
         },
     )
 
+    assert env.match is not None
+    writer.append_replay_snapshot(build_replay_snapshot(env.match, env.scenario, run_id=run_id))
+
     try:
         while env.agents:
             actions: dict[str, int] = {}
@@ -66,7 +70,8 @@ def run_match(
                 else:
                     actions[agent_id] = policy.act(agent_id, observations[agent_id], infos[agent_id])
             observations, rewards, terminations, truncations, infos = env.step(actions)
-            for event in infos[env.possible_agents[0]]["events"]:
+            step_events = infos[env.possible_agents[0]]["events"]
+            for event in step_events:
                 writer.append_event(event)
             writer.append_metric(
                 {
@@ -76,6 +81,9 @@ def run_match(
                     "terminated": all(terminations.values()),
                     "truncated": all(truncations.values()),
                 }
+            )
+            writer.append_replay_snapshot(
+                build_replay_snapshot(env.match, env.scenario, run_id=run_id, events=step_events)
             )
         assert env.match is not None
         summary = {

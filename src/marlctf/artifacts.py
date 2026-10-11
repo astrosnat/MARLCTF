@@ -1,4 +1,4 @@
-﻿"""Local JSON/JSONL artifact writing."""
+"""Local JSON/JSONL artifact writing."""
 
 from __future__ import annotations
 
@@ -17,7 +17,7 @@ class ArtifactError(RuntimeError):
 
 
 class RunArtifactWriter:
-    """Writes run metadata, metrics, and events to a local artifact directory."""
+    """Writes run metadata, metrics, events, and replay artifacts."""
 
     def __init__(self, artifact_dir: str | Path, metadata: dict[str, Any]) -> None:
         self.artifact_dir = Path(artifact_dir)
@@ -25,6 +25,7 @@ class RunArtifactWriter:
         self.run_path = self.artifact_dir / "run.json"
         self.metrics_path = self.artifact_dir / "metrics.jsonl"
         self.events_path = self.artifact_dir / "events.jsonl"
+        self.replay_path = self.artifact_dir / "replay.jsonl"
         self.metadata = {
             "created_at": datetime.now(UTC).isoformat(),
             "status": RunStatus.RUNNING.value,
@@ -40,12 +41,34 @@ class RunArtifactWriter:
     def append_event(self, event: dict[str, Any]) -> None:
         self._append_jsonl(self.events_path, event)
 
+    def append_replay_snapshot(self, snapshot: dict[str, Any], path: str | Path | None = None) -> Path:
+        replay_path = self._artifact_path(path) if path is not None else self.replay_path
+        replay_path.parent.mkdir(parents=True, exist_ok=True)
+        self._append_jsonl(replay_path, snapshot)
+        existing_paths = [Path(item) for item in self.metadata.get("replay_paths", [])]
+        if replay_path not in existing_paths:
+            existing_paths.append(replay_path)
+        self.set_replay_paths(existing_paths)
+        return replay_path
+
+    def append_jsonl_artifact(self, filename: str, payload: dict[str, Any]) -> Path:
+        path = self._artifact_path(filename)
+        path.parent.mkdir(parents=True, exist_ok=True)
+        self._append_jsonl(path, payload)
+        return path
+
     def set_checkpoint_paths(self, checkpoint_paths: list[str | Path]) -> None:
         self.metadata["checkpoint_paths"] = [Path(path).as_posix() for path in checkpoint_paths]
         self._write_run()
 
+    def set_replay_paths(self, replay_paths: list[str | Path]) -> None:
+        self.metadata["replay_paths"] = [Path(path).as_posix() for path in replay_paths]
+        self.metadata["replay_available"] = bool(replay_paths)
+        self._write_run()
+
     def write_json_artifact(self, filename: str, payload: dict[str, Any]) -> Path:
-        path = self.artifact_dir / filename
+        path = self._artifact_path(filename)
+        path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(
             json.dumps(_jsonable(payload), indent=2, sort_keys=True) + "\n",
             encoding="utf-8",
@@ -75,6 +98,12 @@ class RunArtifactWriter:
         self._write_run()
         return dict(self.metadata)
 
+    def _artifact_path(self, path: str | Path) -> Path:
+        artifact_path = Path(path)
+        if artifact_path.is_absolute():
+            return artifact_path
+        return self.artifact_dir / artifact_path
+
     def _write_run(self) -> None:
         self.run_path.write_text(
             json.dumps(_jsonable(self.metadata), indent=2, sort_keys=True) + "\n",
@@ -97,6 +126,18 @@ def read_jsonl(path: str | Path) -> list[dict[str, Any]]:
         for line in artifact_path.read_text(encoding="utf-8").splitlines()
         if line.strip()
     ]
+
+
+def read_json(path: str | Path) -> dict[str, Any]:
+    """Read a JSON object artifact file."""
+
+    artifact_path = Path(path)
+    if not artifact_path.exists():
+        return {}
+    payload = json.loads(artifact_path.read_text(encoding="utf-8"))
+    if not isinstance(payload, dict):
+        raise ArtifactError(f"JSON artifact must contain an object: {artifact_path}")
+    return payload
 
 
 def _jsonable(value: Any) -> Any:
