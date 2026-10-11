@@ -18,6 +18,8 @@ All commands write `run.json`.
   "policy_ids": ["red:scripted", "blue:scripted"],
   "metrics_path": "artifacts/smoke-match/metrics.jsonl",
   "events_path": "artifacts/smoke-match/events.jsonl",
+  "replay_available": true,
+  "replay_paths": ["artifacts/smoke-match/replay.jsonl"],
   "summary": {}
 }
 ```
@@ -36,6 +38,8 @@ Required fields:
 | `policy_ids` | Team policy labels |
 | `metrics_path` | JSONL metrics path |
 | `events_path` | JSONL events path |
+| `replay_available` | Match runs: whether at least one replay was recorded |
+| `replay_paths` | Match runs: replay JSONL paths discoverable by the viewer |
 | `summary` | Command-specific aggregate summary for completed runs |
 
 Training runs also include `algorithm`, `reward_config`, `smoke_limits`, and `checkpoint_paths`. Evaluation runs also include `candidate`, `baseline`, `reward_config`, `smoke_limits`, and `comparison_path`.
@@ -138,6 +142,16 @@ and `events`. Default 3v3 replay rows must contain `red_0`, `red_1`, `red_2`,
 `blue_0`, `blue_1`, and `blue_2`. Agent and visible flag coordinates must be
 inside map bounds. Carried flags use `x: null`, `y: null`, and a valid
 `carrier`.
+
+Open a replay-bearing run with:
+
+```powershell
+marlctf viewer --artifact artifacts/smoke-match
+```
+
+The controls, accepted inputs, and troubleshooting guidance are documented in
+the [replay visualisation guide](viewer.md).
+
 ## Evaluation Metrics
 
 `metrics.jsonl` for `evaluate` stores one JSON object per seed.

@@ -4,6 +4,8 @@ Toy 3v3 capture-the-flag multi-agent reinforcement learning simulation.
 
 MARLCTF provides a small PettingZoo-style Parallel environment, deterministic scripted and random baselines, a CPU-friendly VDN smoke trainer, and fixed-seed evaluation artifacts for comparing candidate policies.
 
+Made with spec-kit, AI, and love :3
+
 ## Install
 
 From the repository root:
@@ -47,7 +49,32 @@ Outputs:
 artifacts/smoke-match/run.json
 artifacts/smoke-match/metrics.jsonl
 artifacts/smoke-match/events.jsonl
+artifacts/smoke-match/replay.jsonl
 ```
+
+## Visualise A Match
+
+Match runs record a deterministic, step-by-step replay. Open the run directory
+in the local browser viewer:
+
+```powershell
+marlctf viewer --artifact artifacts/smoke-match
+```
+
+The viewer draws the grid, walls, flags, and all six agents, and shows the
+score, terminal outcome, and events for the selected step. Use the playback
+buttons, timeline scrubber, and `0.5x`-`4x` speed control to inspect the run.
+You can also choose a `replay.jsonl` file from the page instead of preloading
+one on the command line.
+
+To serve the viewer without opening a browser automatically:
+
+```powershell
+marlctf viewer --artifact artifacts/smoke-match --host 127.0.0.1 --port 8000 --no-open
+```
+
+See the [visualisation guide](docs/viewer.md) for accepted inputs,
+troubleshooting, and the current feature boundary.
 
 ## Train VDN
 
@@ -112,3 +139,4 @@ artifacts/validation/test_summary.json
 
 - [Default scenario and observation contract](docs/scenario.md)
 - [Artifact schemas and examples](docs/artifacts.md)
+- [Replay visualisation guide](docs/viewer.md)
